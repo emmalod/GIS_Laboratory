@@ -1,0 +1,59 @@
+---> Introduction 
+
+
+Landslides are geological phenomena characterized by the movement of a mass of rock, soil, or debris down a slope.Natural factors and human activities like deforenstation,mining,construction can contribute to landslide occurrence.
+Understanding and assessing landslide hazards is crucial for managing and mitigating the risks they pose to human lives, infrastructure, and the environment. This is where susceptibility maps come into play.
+Susceptibility maps depict the spatial probability levels for a certain area to be
+prone to landslides, based on local environmental variables. The second key step is
+exposure assessment which implies counting (or estimating) of people, property,
+systems, or other elements present in hazard zones. 
+
+
+-->Our project
+
+ Firstly we have download the required data : 
+- DTM (Digital Terrain Model): DTM refers to a digital representation of the topography or terrain of a specific area. It provides detailed information about the elevation and shape of the land surface
+-NDVI (Normalized Difference Vegetation Index): NDVI is a numerical indicator that measures and quantifies the density and health of vegetation in an area. It is calculated using the visible and near-infrared light reflected by vegetation. NDVI values range from -1 to 1, with higher values indicating healthier and more abundant vegetation. In landslide susceptibility mapping, NDVI can be used to assess the influence of vegetation cover on slope stability and identify areas with limited vegetation that may be more susceptible to landslides.
+-DUSAF (Digital Urban Surface Analysis Factors) : DUSAF consists in a set of factors obtained from high-resolution remote sensing data. It is useful in order to analyze urban patterns,quantifying the urban heat island effect and assessing urban sprawl.
+-BUFFER LAYERS OF RIVER, ROADS, FAULTS: The buffer layer is obtained by buffering the original features using a specific distance. This layer is very useful in order to assess relationships between these elements and landslides, helping in evaluating potential impacts. 
+-LS (Landslide Inventory): it consists in a collection of information related to landslides in a specific area. In our case it is specified the typoligy of the landslide.   
+
+STEP1- Data PreProcessing for susceptibility mapping
+Firstly, the downloaded raster layers have been clipped using as mask the vector layer of the group 6 area. This has been done using the QGIS Processing tool r.resamp (from GRASS plugin) , in order to have, for every raster produced, the same Extent and Pixel Size. 
+For the vector layers, they have been clipped using Clip Vector by Mask Layer (GDAL plugin), using as mask the vector layer of the group 6 area.
+  
+Then, the environmetal factors are extracted by DTM using SAGA plugin: 
+-SLOPE: the value of the cell in the output slope raster gives the
+slope value, obtained by calculating the maximum rate of
+change between each cell and its neighbors. The lower the
+slope value, the flatter is the terrain; the higher the slope value,
+the steeper is the terrain. 
+-ASPECT:the value of each cell in the output aspect raster indicates
+the direction the cell faces.
+-PROFILE CURVATURE ,PLAN CURVATURE : The curvature tool calculates the rate of change in slope along a raster surface. It provides information about the concavity or convexity of the terrain, indicating whether a location is part of a ridge, valley, or flat area.
+
+The next phase of the step 1 consists in defining the No Landslide Zones, that are those zones of the group 6 area that have a slope<20° or slope>70°. 
+It can be noticed that there are some many big NLZ zones, and so it is possible to remove the smaller ones, filtering the raster by removing very small patches of pixels. In order to do this has been used GDAL tool Sieve, after have setting the negative values to null. 
+The obtained raster then will be vectorized in order to obtain the polygons of NLZ.  
+
+Since NLZ has been computed with some approximation there are some part of it that overlaps with the LS layer. For these reason, it is necessary to repear this using the Difference tool that allow to remove from NLZ layer the LS overlapping parts.
+
+Training and Testing 
+At this point, it is necessary to sample the environmental factors with the training and testing points layers. In order to do that it has been used the Point Sampling Tool Plugin.
+In order to obtain those layers is necessary to sample the merged landslide inventory and NLZ to obtain the Hazard attribute. Hazard attribute has been set to 0 for the NLZ and 1 for LS. In particular 70% of points will be used in training while the 30% in testing. The tool Random Selection has been used in order to assign to random polygons the value of training and testing. 
+  --- tabellina con punti di training e hazard e testing e hazard----
+
+In order to obtain this the Select features by Value tool has been used and after that to have the percentage of random points needed for each field it has been used the Random Points in layer Bounds.  At the end to have a unique layer with training points and testing points we use again the Merge tool to obtain testingPoint and testingPoints. This merged layers havn't any geospatial information connected so we want to sample the environmental factors using the Point Sampling Tool plugin that creates a table with all the inforamation in the selected points.
+
+
+
+Susceptibility Map Generation 
+For the generation of the susceptibility map we use R in QGIS with the ModelMap given script.
+In the validation step the resulted susceptibility map layer has been reclassified into 2 classes using the Accuracy Assessment and Sampling tool. 
+
+ 
+
+
+
+
+
