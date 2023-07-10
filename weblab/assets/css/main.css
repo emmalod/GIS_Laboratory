@@ -2280,6 +2280,11 @@ input, select, textarea {
 			font-size: 3em;
 		}
 
+		#hero b {
+			color: #fff;
+			font-size: 1.5em;
+		}
+
 		#hero strong {
 			color: inherit;
 		}
@@ -3059,5 +3064,7 @@ input, select, textarea {
 			#footer header.major {
 				margin-bottom: 1em;
 			}
+
+/* Added */
 
 	}
