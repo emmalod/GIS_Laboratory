@@ -16,7 +16,7 @@ systems, or other elements present in hazard zones.
 -NDVI (Normalized Difference Vegetation Index): NDVI is a numerical indicator that measures and quantifies the density and health of vegetation in an area. It is calculated using the visible and near-infrared light reflected by vegetation. NDVI values range from -1 to 1, with higher values indicating healthier and more abundant vegetation. In landslide susceptibility mapping, NDVI can be used to assess the influence of vegetation cover on slope stability and identify areas with limited vegetation that may be more susceptible to landslides.
 -DUSAF (Digital Urban Surface Analysis Factors) : DUSAF consists in a set of factors obtained from high-resolution remote sensing data. It is useful in order to analyze urban patterns,quantifying the urban heat island effect and assessing urban sprawl.
 -BUFFER LAYERS OF RIVER, ROADS, FAULTS: The buffer layer is obtained by buffering the original features using a specific distance. This layer is very useful in order to assess relationships between these elements and landslides, helping in evaluating potential impacts. 
--LS (Landslide Inventory): it consists in a collection of information related to landslides in a specific area. In our case it is specified the typoligy of the landslide.   
+-LS (Landslide Inventory): it consists in a collection of information related to landslides in a specific area. In our case it is specified the typology of the landslide.   
 
 STEP1- Data PreProcessing for susceptibility mapping
 Firstly, the downloaded raster layers have been clipped using as mask the vector layer of the group 6 area. This has been done using the QGIS Processing tool r.resamp (from GRASS plugin) , in order to have, for every raster produced, the same Extent and Pixel Size. 
@@ -33,17 +33,38 @@ the direction the cell faces.
 -PROFILE CURVATURE ,PLAN CURVATURE : The curvature tool calculates the rate of change in slope along a raster surface. It provides information about the concavity or convexity of the terrain, indicating whether a location is part of a ridge, valley, or flat area.
 
 The next phase of the step 1 consists in defining the No Landslide Zones, that are those zones of the group 6 area that have a slope<20° or slope>70°. 
-It can be noticed that there are some many big NLZ zones, and so it is possible to remove the smaller ones, filtering the raster by removing very small patches of pixels. In order to do this has been used GDAL tool Sieve, after have setting the negative values to null. 
-The obtained raster then will be vectorized in order to obtain the polygons of NLZ.  
+There are some big NLZ zones, and so it be migth convenient to set to 0 negative values and then remove very small patches  using the Sieve tool from GDAL.
+The obtained raster then  is vectorized in order to obtain the polygons of NLZ using r.to.vect from GRASS plugin. 
 
-Since NLZ has been computed with some approximation there are some part of it that overlaps with the LS layer. For these reason, it is necessary to repear this using the Difference tool that allow to remove from NLZ layer the LS overlapping parts.
+Since the definition of NLZ is simplified (only according to slope) there may be
+some NLZ areas which overlap the LandslideInventory polygons. For these reason, it is necessary to repear this using the Difference tool that allow to remove from NLZ layer the LS overlapping parts.
+
+Then, in order to prepare our data to the training/testing phase, it is necessary to add a new field called hazard to the attribute table of NLZ and LS, and then assign value 0 for the attribute Hazard in NLZ, and 1 for hazard in LS. 
 
 Training and Testing 
-At this point, it is necessary to sample the environmental factors with the training and testing points layers. In order to do that it has been used the Point Sampling Tool Plugin.
-In order to obtain those layers is necessary to sample the merged landslide inventory and NLZ to obtain the Hazard attribute. Hazard attribute has been set to 0 for the NLZ and 1 for LS. In particular 70% of points will be used in training while the 30% in testing. The tool Random Selection has been used in order to assign to random polygons the value of training and testing. 
+At this point, it has been decided the training-testing ratio that will be used for the machine learning model (70/30).For both LS and NLZ it has been created a new text attribute 'Train_Test', at which in a random way is assigned the value 'Training' or 'Testing'. Then the processed LS has been merged with the one of NLZ.  
+The next step consists in create random points inside the polygons: the model should be fed with 1000 points, of which 700 for the training phase(350 with 0 Hazard vs 350 with 1 Hazard) and 300(150 with 0 Hazard vs 150 with 1 Hazard) for the testing phase. For this purpose it has been used the tool Random Points in layer bounds.
+
   --- tabellina con punti di training e hazard e testing e hazard----
 
-In order to obtain this the Select features by Value tool has been used and after that to have the percentage of random points needed for each field it has been used the Random Points in layer Bounds.  At the end to have a unique layer with training points and testing points we use again the Merge tool to obtain testingPoint and testingPoints. This merged layers havn't any geospatial information connected so we want to sample the environmental factors using the Point Sampling Tool plugin that creates a table with all the inforamation in the selected points.
+At the end to have a unique layer with training points and testing points we use again the Merge tool to obtain trainingPoints and testingPoints. This merged layers hasn't any geospatial information connected so it is necessary  to sample the environmental factors using the Point Sampling Tool plugin that creates a table with all the useful environmental factors in the selected points. At the end would exist two layers trainingPointsSampled and testingPointsSampled with the associated environmental factors. 
+
+At the end of the step 1, the mandatory outputs are the following: 
+-dtm.tif
+-ndvi.tif
+-aspect.tif 
+-dusaf.tif 
+-faults.tif 
+-plan.tif 
+-profile.tif 
+-rivers.tif 
+-roads.tif 
+-slope.tif 
+-NLZ.gpkg 
+-trainingPointsSampled.gpkg 
+-testingPointsSampled.gpkg 
+
+Before to start with the next step, it is necessary that all the output raster layers have the same CRS,extent and pixel size.
 
 
 
@@ -51,6 +72,26 @@ Susceptibility Map Generation
 For the generation of the susceptibility map we use R in QGIS with the ModelMap given script.
 In the validation step the resulted susceptibility map layer has been reclassified into 2 classes using the Accuracy Assessment and Sampling tool. 
 
+
+STEP2- Susceptibility map generation 
+In this step the ModelMap package of R in QGIS has been used, generating the susceptibility map. Once the susceptibility map has been generated, the R output should be validated: the resulted layer is reclassified in 2 classes, 0 and 1, using Accuracy Assessment and Sampling tool. 
+The mandatory outputs of this step are the Susceptibility Map and the Error matrix produced in the validation phase. 
+
+
+
+STEP3- Data PreProcessing for exposure assessment
+In this step the population raster dataset has been downloaded from WorldPop and firstly this dataset has been reprojected using the same CRS of the group 6 area and of the susceptibility map. Then the reprojected population raster dataset has been clipped using as mask layer the group 6 sub area. 
+At this point , the susceptibility raster map is reclassified using 4 different classes of risk (low, moderate, high, very high) and then the reclassified susceptibility map is resampled using r.resamp.stats and setting the mode as aggregation method. 
+The mandatory outputs of this step consist in :
+-Reprojected and clipped population raster dataset in GeoTiff format 
+-Reclassified and resampled susceptibility raster map in Geotiff format 
+
+
+
+STEP4- Exposure assessment 
+Exposure assessment is a process used to determine the potential impact and vulnerability of assets, populations, or ecosystems to various hazards or risks. It involves evaluating and quantifying the elements at risk in a given area, such as buildings, infrastructure, natural resources, and people, to understand their susceptibility to potential hazards.
+In this step for each one of the susceptibility classes has been computed the population counts. 
+The mandatory output of this step consists in the table with the computed population in each susceptibility class. 
  
 
 
