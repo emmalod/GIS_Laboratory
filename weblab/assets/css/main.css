@@ -521,6 +521,13 @@ input, select, textarea {
 					padding-top: 100px;
 				}
 
+		/* Added */
+
+			.two-column-list {
+				column-count: 2;
+				column-gap: 20px; /* Adjust the gap between columns */
+			}
+
 		@media screen and (max-width: 1280px) {
 
 			.row {
@@ -2088,8 +2095,6 @@ input, select, textarea {
 			left: -1000%;
 			top: 0;
 			z-index: 1;
-			box-shadow: inset 0px 0px 0px 1px #e8e8e8;
-			background: #f6f8fb url("images/image-wrapper.svg");
 		}
 
 	#header-wrapper {
@@ -3064,7 +3069,5 @@ input, select, textarea {
 			#footer header.major {
 				margin-bottom: 1em;
 			}
-
-/* Added */
 
 	}

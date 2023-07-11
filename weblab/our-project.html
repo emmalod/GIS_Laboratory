@@ -89,8 +89,70 @@
 										<li>The training-testing ratio that will be used for the machine learning model has been decided: 70/30</li>
 										<li>For both LS and NLZ a new text attribute 'Train_Test' has been created, at which is randomly assigned the value 'Training' or 'Testing'. </li>
 										<li>The processed LS has been merged with the one of NLZ.</li>
-										<li>Random points inside the polygons have been created: the model should be fed with 1000 points, of which 700 for the training phase (350 with 0 Hazard vs 350 with 1 Hazard) and 300 (150 with 0 Hazard vs 150 with 1 Hazard) for the testing phase. For this purpose it has been used the tool Random Points in layer bounds.</li>									
+										<li>Random points inside the polygons have been created: the model should be fed with 1000 points, of which 700 for the training phase (350 with 0 Hazard vs 350 with 1 Hazard) and 300 (150 with 0 Hazard vs 150 with 1 Hazard) for the testing phase. For this purpose it has been used the tool Random Points in layer bounds.</li>
 									</ol>
+
+
+								<div style="text-align: center;">
+  									<img src="layer-immagini/tabellatesting-training.png" alt="Training/Testing point table">
+  									<figcaption>Sampling points for training and testing.</figcaption>
+								</div>
+
+								<br>
+
+								<p>At the end, in order to have a unique layer with training and testing points we use again the Merge tool to obtain <b>trainingPoints</b> and <b>testingPoints</b> layers.
+								These merged layers hasn't any geospatial information connected to them, so it is necessary to sample the environmental factors using the Point Sampling Tool plugin that creates a table with all the useful environmental factors in the selected points.
+								The results will be two layers: <b>trainingPointsSampled</b> and <b>testingPointsSampled</b> with the associated environmental factors.</p>
+
+								<p>Outputs of this computation are the following layers:</p>
+
+								<div class="two-column-list">
+									<ul>
+										<li>dtm.tif</li>
+										<li>ndvi.tif</li>
+										<li>aspect.tif</li>
+										<li>dusaf.tif</li>
+										<li>faults.tif</li>
+										<li>plan.tif</li>
+										<li>profile.tif </li>
+										<li>rivers.tif</li>
+										<li>roads.tif</li>
+										<li>slope.tif</li>
+										<li>NLZ.gpkg</li>
+										<li>trainingPointsSampled.gpkg</li>
+										<li>testingPointsSampled.gpkg</li>
+									</ul>
+								</div>
+
+								<br>
+
+								<p>Before starting with the next step, it is necessary to check whether all the output raster layers have the same CRS, extent and pixel size.</p>
+
+								<p><h3><b>STEP2 - Susceptibility Map generation</b></h3></p>
+
+								<p>For the generation of the susceptibility map we use R in QGIS with the ModelMap given script.</p>
+								<p>Once the susceptibility map has been generated, the R output should be <b>validated</b>: the resulted layer is reclassified in 2 classes, 0 and 1, using Accuracy Assessment and Sampling tool.</p>
+
+								<p>The outputs obtained are the <b>Susceptibility Map</b> and the <b>Error matrix</b>.</p>
+
+								<p><h3><b>STEP3- Data PreProcessing for exposure assessment</b></h3></p>
+
+								<p>After downloading the population raster dataset from WorldPop, we reprojected this dataset using the same CRS of the group 6 area and of the susceptibility map.
+								Then the reprojected population raster dataset has been clipped using as mask layer the group 6 sub area.</p>
+								<p>At this point, the susceptibility raster map is classified using 4 different classes of risk (<em>low, moderate, high, very high</em>), obtaining a reclassifided susceptibility map. After that, we resampled it using r.resamp.stats and setting the mode as aggregation method.</p>
+								<p>The output of this step consist of:</p>
+								<ul>
+									<li>Reprojected and clipped <b>population raster dataset</b> in GeoTiff format</li>
+									<li>Reclassified and resampled <b>susceptibility raster map</b> in Geotiff format</li>
+								</ul>
+
+								<p><h3><b>STEP4 - Exposure assessment</b></h3></p>
+
+								<p><b>Exposure assessment</b> is a process used to determine the potential impact and vulnerability of assets, populations, or ecosystems to various hazards or risks. It involves evaluating and quantifying the elements at risk in a given area, such as buildings, infrastructure, natural resources, and people, to understand their susceptibility to potential hazards.</p>
+								<p>In this step for each one of the susceptibility classes has been computed the population count.</p>
+								<p>The output of this step is the table with the computed population in each susceptibility class.</p>
+
+								<p><h3><b>STEP 5 - Website and WebGIS development</b></h3></p>
 
 
 							</article>
@@ -98,29 +160,19 @@
 						<div class="row features">
 							<section class="col-4 col-12-narrower feature">
 								<div class="image-wrapper first">
-									<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
+									<a class="image featured"><img src="layer-immagini/dtm_clipped.png" alt="" /></a>
 								</div>
 								<header>
-									<h3>Dolor sit consequat magna</h3>
+									<h3>DTM</h3>
 								</header>
-								<p>Lorem ipsum dolor sit amet consectetur et sed adipiscing elit. Curabitur
-								vel sem sit dolor neque semper magna lorem ipsum.</p>
-								<ul class="actions">
-									<li><a href="#" class="button">Elevate my awareness</a></li>
-								</ul>
 							</section>
 							<section class="col-4 col-12-narrower feature">
 								<div class="image-wrapper">
-									<a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
+									<a class="image featured"><img src="layer-immagini/ndvi.png" alt="" /></a>
 								</div>
 								<header>
-									<h3>Dolor sit consequat magna</h3>
+									<h3>NDVI</h3>
 								</header>
-								<p>Lorem ipsum dolor sit amet consectetur et sed adipiscing elit. Curabitur
-								vel sem sit dolor neque semper magna lorem ipsum.</p>
-								<ul class="actions">
-									<li><a href="#" class="button">Elevate my awareness</a></li>
-								</ul>
 							</section>
 							<section class="col-4 col-12-narrower feature">
 								<div class="image-wrapper">

@@ -63,8 +63,9 @@ At the end of the step 1, the mandatory outputs are the following:
 -trainingPointsSampled.gpkg 
 -testingPointsSampled.gpkg 
 
-Before to start with the next step, it is necessary that all the output raster layers have the same CRS,extent and pixel size.
 
+
+Before to start with the next step, it is necessary that all the output raster layers have the same CRS,extent and pixel size.
 
 
 Susceptibility Map Generation 
