@@ -28,8 +28,7 @@ slope value, obtained by calculating the maximum rate of
 change between each cell and its neighbors. The lower the
 slope value, the flatter is the terrain; the higher the slope value,
 the steeper is the terrain. 
--ASPECT:the value of each cell in the output aspect raster indicates
-the direction the cell faces.
+-ASPECT:the value of each cell in the output aspect raster indicates the direction the cell faces.
 -PROFILE CURVATURE ,PLAN CURVATURE : The curvature tool calculates the rate of change in slope along a raster surface. It provides information about the concavity or convexity of the terrain, indicating whether a location is part of a ridge, valley, or flat area.
 
 The next phase of the step 1 consists in defining the No Landslide Zones, that are those zones of the group 6 area that have a slope<20° or slope>70°. 
@@ -94,7 +93,7 @@ In this step for each one of the susceptibility classes has been computed the po
 The mandatory output of this step consists in the table with the computed population in each susceptibility class. 
  
 
-
+STEP 5 - Website and WebGIS development
 
 
 
