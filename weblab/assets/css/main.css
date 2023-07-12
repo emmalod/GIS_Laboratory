@@ -2178,6 +2178,33 @@ input, select, textarea {
 			font-family: 'Font Awesome 5 Brands';
 		}
 
+
+		ul.bioicons li:before {
+		    display: inline-block;
+		    color: #fabf9c;
+		    background: #FFFFFF;
+		    width: 2.5em;
+		    height: 2.5em;
+		    border-radius: 0.35em;
+		    text-align: center;
+		    line-height: 2.5em;
+		    margin-right: 0.75em;
+		}
+
+		ul.bioicons li a {
+		    display: inline-block;
+		    background: none;
+		    width: 2.5em;
+		    height: 2.5em;
+		    line-height: 2.5em;
+		    text-align: center;
+		    border-radius: 100%;
+		    border: 0;
+		    color: inherit;
+		}
+
+	}
+
 /* Wrappers */
 
 	.wrapper {
