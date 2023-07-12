@@ -281,6 +281,7 @@ input, select, textarea {
 			color: #fabf9c;
 			font-size: 1em;
 			margin-top: 2em;
+			font-weight: bold;
 		}
 
 			#foot .button:hover {
@@ -529,7 +530,7 @@ input, select, textarea {
 		}
 
 		.row.gtr-0 {
-			margin-top: 0px;
+			margin-top: 2.2em;
 			margin-left: 12em;
 		}
 
@@ -2236,6 +2237,7 @@ input, select, textarea {
 		background-image: url("images/overlay.png");
 		background-color: #fabf9c;
 		background-size: 128px 128px, 100% 100%;
+		border-block-color: #fabf9c;
 	}
 
 /* Header */
@@ -2416,7 +2418,7 @@ input, select, textarea {
 		#hero .button {
 			background: #fff;
 			border-color: rgba(255, 255, 255, 0);
-			color: #fabf9c;
+			color: #27636B;
 			font-size: 1.25em;
 		}
 
