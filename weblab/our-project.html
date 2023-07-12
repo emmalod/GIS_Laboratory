@@ -58,6 +58,64 @@
 
 								<br>
 
+								<div class="row features">
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper first">
+											<a class="image featured"><img src="layer-immagini/dtm_clipped.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>DTM</h3>
+										</header>
+									</section>
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper">
+											<a class="image featured"><img src="layer-immagini/ndvi.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>NDVI</h3>
+										</header>
+									</section>
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper">
+											<a class="image featured"><img src="layer-immagini/dusaf.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>DUSAF</h3>
+										</header>
+									</section>
+								</div>
+
+								<h2>Buffer layers</h2>
+
+								<div class="row features">
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper first">
+											<a class="image featured"><img src="layer-immagini/roads.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>Roads</h3>
+										</header>
+									</section>
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper">
+											<a class="image featured"><img src="layer-immagini/rivers.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>Rivers</h3>
+										</header>
+									</section>
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper">
+											<a class="image featured"><img src="layer-immagini/faults.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>Faults</h3>
+										</header>
+									</section>
+								</div>
+
+								<br>
+
 								<p><h3><b>STEP1 - Data preprocessing for susceptibility mapping</b></h3></p>
 
 								<ul>
@@ -72,13 +130,93 @@
 								  	<p>The value of the cell in the output slope raster gives the slope value, obtained by calculating the maximum rate of change between each cell and its neighbors. The lower the slope value, the flatter is the terrain; the higher the slope value,the steeper is the terrain.</p></li>
 								  <li><b>ASPECT</b>
 								  	<p>The value of each cell in the output aspect raster indicates the direction the cell faces.</p></li>
+
+								  	<div class="row features">
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper first">
+											<a class="image featured"><img src="layer-immagini/aspect.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>Aspect</h3>
+										</header>
+									</section>
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper">
+											<a class="image featured"><img src="layer-immagini/slope.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>Slope</h3>
+										</header>
+									</section>
+								</div>
+
 								  <li><b>PROFILE CURVATURE AND PLAN CURVATURE</b>
 								  	<p>The curvature tool calculates the rate of change in slope along a raster surface. It provides information about the concavity or convexity of the terrain, indicating whether a location is part of a ridge, valley, or flat area.</p></li>
 								</ul>
 
+
+								<div class="row features">
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper first">
+											<a class="image featured"><img src="layer-immagini/profile.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>Profile</h3>
+										</header>
+									</section>
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper">
+											<a class="image featured"><img src="layer-immagini/plan.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>Plan</h3>
+										</header>
+									</section>
+								</div>
+
+								<p><h3>No Landslide Zone</h3></p>
+
 								<p>The next phase of the step 1 consists in defining the <b>No Landslide Zones</b>, that are those zones of the group 6 area that have <em>slope < 20° or slope > 70°</em>. There are some big NLZ zones, and so it be migth convenient to set to 0 negative values and then remove very small patches  using the Sieve tool from GDAL. The obtained raster then is vectorized in order to obtain the polygons of NLZ using r.to.vect from GRASS plugin.</p>
 
+								<div class="row features">
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper first">
+											<a class="image featured"><img src="layer-immagini/NLZ.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>NLZ</h3>
+										</header>
+									</section>
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper">
+											<a class="image featured"><img src="layer-immagini/NLZsmallpatchesremoved.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>NLZ: bigger patches only</h3>
+										</header>
+									</section>
+								</div>
+
 								<p>Since the definition of NLZ is simplified (only according to slope) there may be some NLZ areas which overlap the LandslideInventory polygons. For these reason, it is necessary to repear this using the Difference tool that allow to remove from NLZ layer the LS overlapping parts.</p>
+
+								<div class="row features">
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper first">
+											<a class="image featured"><img src="layer-immagini/landslidezones.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>Landslide zone</h3>
+										</header>
+									</section>
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper">
+											<a class="image featured"><img src="layer-immagini/differences.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>Difference between LZ and NLZ</h3>
+										</header>
+									</section>
+								</div>
 
 								<p>Then, in order to prepare our data to the training/testing phase, it is necessary to add a new field called <b>hazard</b> to the attribute table of NLZ and LS, and then assign value 0 for the attribute Hazard in NLZ, and 1 for hazard in LS.</p>
 
@@ -135,16 +273,66 @@
 
 								<p>The outputs obtained are the <b>Susceptibility Map</b> and the <b>Error matrix</b>.</p>
 
+								<div class="row features">
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper first">
+											<a class="image featured"><img src="layer-immagini/susceptibility.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>Susceptibility map</h3>
+										</header>
+									</section>
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper">
+											<a class="image featured"><img src="layer-immagini/susceptibility_validation_2_classes.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>Susceptibility map classified in 2 classes</h3>
+										</header>
+									</section>
+								</div>
+
 								<p><h3><b>STEP3 - Data PreProcessing for exposure assessment</b></h3></p>
 
 								<p>After downloading the population raster dataset from WorldPop, we reprojected this dataset using the same CRS of the group 6 area and of the susceptibility map.
 								Then the reprojected population raster dataset has been clipped using as mask layer the group 6 sub area.</p>
+
+								<div class="row features">
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper first">
+											<a class="image featured"><img src="layer-immagini/population.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>Population</h3>
+										</header>
+									</section>
+								</div>
+
 								<p>At this point, the susceptibility raster map is classified using 4 different classes of risk (<em>low, moderate, high, very high</em>), obtaining a reclassifided susceptibility map. After that, we resampled it using r.resamp.stats and setting the mode as aggregation method.</p>
 								<p>The output of this step consist of:</p>
 								<ul>
 									<li>Reprojected and clipped <b>population raster dataset</b> in GeoTiff format</li>
 									<li>Reclassified and resampled <b>susceptibility raster map</b> in Geotiff format</li>
 								</ul>
+
+								<div class="row features">
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper first">
+											<a class="image featured"><img src="layer-immagini/susceptibility_reclissified.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>Susceptibility map classified in 4 classes</h3>
+										</header>
+									</section>
+									<section class="col-4 col-12-narrower feature">
+										<div class="image-wrapper">
+											<a class="image featured"><img src="layer-immagini/SuscResampled.png" alt="" /></a>
+										</div>
+										<header>
+											<h3>Susceptibility map resampled</h3>
+										</header>
+									</section>
+								</div>
 
 								<p><h3><b>STEP4 - Exposure assessment</b></h3></p>
 
@@ -154,40 +342,14 @@
 
 								<p><h3><b>STEP 5 - Website and WebGIS development</b></h3></p>
 
+								<ul class="actions" style="text-align: center;">
+									<li><a href="results.html" class="button">See results</a></li>
+								</ul>
 
 							</article>
 
-						<div class="row features">
-							<section class="col-4 col-12-narrower feature">
-								<div class="image-wrapper first">
-									<a class="image featured"><img src="layer-immagini/dtm_clipped.png" alt="" /></a>
-								</div>
-								<header>
-									<h3>DTM</h3>
-								</header>
-							</section>
-							<section class="col-4 col-12-narrower feature">
-								<div class="image-wrapper">
-									<a class="image featured"><img src="layer-immagini/ndvi.png" alt="" /></a>
-								</div>
-								<header>
-									<h3>NDVI</h3>
-								</header>
-							</section>
-							<section class="col-4 col-12-narrower feature">
-								<div class="image-wrapper">
-									<a href="#" class="image featured"><img src="images/pic05.jpg" alt="" /></a>
-								</div>
-								<header>
-									<h3>Dolor sit consequat magna</h3>
-								</header>
-								<p>Lorem ipsum dolor sit amet consectetur et sed adipiscing elit. Curabitur
-								vel sem sit dolor neque semper magna lorem ipsum.</p>
-								<ul class="actions">
-									<li><a href="#" class="button">Elevate my awareness</a></li>
-								</ul>
-							</section>
-						</div>
+							
+
 					</div>
 				</div>
 
