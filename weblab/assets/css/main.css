@@ -197,6 +197,116 @@ input, select, textarea {
 		text-align: center;
 	}
 
+	.footer-title {
+		color: #FFFFFF;
+		font-size: 2em;
+		text-align: center;
+	}
+
+	.footer-text {
+		color: #FFFFFF;
+		font-size: 1em;
+		text-align: left;
+	}
+
+	.footer-link {
+		color: #FFFFFF;
+		font-size: 1em;
+		border-bottom: dotted 1px #FFFFFF;
+	}
+
+	.footer-names {
+		color: #FFFFFF;
+		font-size: 1.25em;
+		text-align: center;
+	}
+
+	.footer-button {
+	    background: #fff;
+	    border-color: rgba(255, 255, 255, 0);
+	    color: #f08c89;
+	    font-size: 1.25em;
+
+	}
+
+	.footer-button:hover {
+  		border-color: rgba(255, 255, 255, 0.75);
+		background-color: rgba(255, 255, 255, 0.15);
+		color: #fff;
+	}
+
+	#footer-wrapper {
+		position: relative;
+		background-image: url("images/overlay.png"), url("../../images/blurred.jpg");
+		background-size: 192px 192px, cover;
+		background-position: top left, center center;
+		color: #fff;
+		text-align: center;
+		padding: 6em 0 6em 0;
+	}
+
+	#foot {
+		position: relative;
+		color: #fff;
+		text-align: center;
+		z-index: 1;
+	}
+
+		#foot h2 {
+			color: #fff;
+			font-size: 3em;
+		}
+
+		#foot b {
+			color: #fff;
+			font-size: 1.5em;
+		}
+
+		#foot strong {
+			color: inherit;
+		}
+
+		#foot header > span {
+			color: #fff;
+		}
+
+		#foot p {
+			font-size: 1.5em;
+			line-height: 1.5em;
+		}
+
+		#foot .button {
+			background: #fff;
+			border-color: rgba(255, 255, 255, 0);
+			color: #fabf9c;
+			font-size: 1em;
+			margin-top: 2em;
+			font-weight: bold;
+		}
+
+			#foot .button:hover {
+				border-color: rgba(255, 255, 255, 0.75);
+				background-color: rgba(255, 255, 255, 0.15);
+				color: #fff;
+			}
+
+		#foot a {
+			color: #fff;
+			border-color: #fff;
+			border-color: rgba(255, 255, 255, 0.5);
+		}
+
+			#foot a:hover {
+				border-color: rgba(255, 255, 255, 0);
+			}
+
+		# foot ul.actions {
+		    padding-top: 1em;
+		    list-style: none;
+		    padding-left: 0;
+		}
+
+
 /* Sections/Article */
 
 	section, article {
@@ -420,8 +530,8 @@ input, select, textarea {
 		}
 
 		.row.gtr-0 {
-			margin-top: 0px;
-			margin-left: 0px;
+			margin-top: 2.2em;
+			margin-left: 12em;
 		}
 
 			.row.gtr-0 > * {
@@ -520,6 +630,13 @@ input, select, textarea {
 				.row.gtr-200.gtr-uniform > * {
 					padding-top: 100px;
 				}
+
+		/* Added */
+
+			.two-column-list {
+				column-count: 2;
+				column-gap: 20px; /* Adjust the gap between columns */
+			}
 
 		@media screen and (max-width: 1280px) {
 
@@ -1851,7 +1968,7 @@ input, select, textarea {
 
 			ul.divided li:first-child {
 				padding-top: 0;
-				margin-top: 0;
+				margin-top: 1em;
 				border-top: 0;
 			}
 
@@ -1868,8 +1985,8 @@ input, select, textarea {
 
 			ul.icons li:before {
 				display: inline-block;
-				color: #fff;
-				background: #61666b;
+				color: #fabf9c;
+				background: #FFFFFF;
 				width: 2.5em;
 				height: 2.5em;
 				border-radius: 0.35em;
@@ -2088,8 +2205,6 @@ input, select, textarea {
 			left: -1000%;
 			top: 0;
 			z-index: 1;
-			box-shadow: inset 0px 0px 0px 1px #e8e8e8;
-			background: #f6f8fb url("images/image-wrapper.svg");
 		}
 
 	#header-wrapper {
@@ -2106,10 +2221,10 @@ input, select, textarea {
 
 	#promo-wrapper {
 		position: relative;
-		background-image: url("images/overlay.png"), url("../../images/promo.jpg");
+		background-image: url("images/overlay.png"), url("../../images/blurred.jpg");
 		background-size: 192px 192px, cover;
 		background-position: top left, center center;
-		color: #fff;
+		color: #293448;
 		text-align: center;
 		padding: 6em 0 6em 0;
 	}
@@ -2119,8 +2234,10 @@ input, select, textarea {
 		position: relative;
 		border-top: solid 1px #c2c7cc;
 		padding: 6em 0 6em 0;
-		background-image: url("images/overlay.png"), url("images/footer.svg");
-		background-size: 128px 128px,				100% 100%;
+		background-image: url("images/overlay.png");
+		background-color: #fabf9c;
+		background-size: 128px 128px, 100% 100%;
+		border-block-color: #fabf9c;
 	}
 
 /* Header */
@@ -2301,7 +2418,7 @@ input, select, textarea {
 		#hero .button {
 			background: #fff;
 			border-color: rgba(255, 255, 255, 0);
-			color: #f08c89;
+			color: #27636B;
 			font-size: 1.25em;
 		}
 
@@ -3064,7 +3181,5 @@ input, select, textarea {
 			#footer header.major {
 				margin-bottom: 1em;
 			}
-
-/* Added */
 
 	}

@@ -63,8 +63,9 @@ At the end of the step 1, the mandatory outputs are the following:
 -trainingPointsSampled.gpkg 
 -testingPointsSampled.gpkg 
 
-Before to start with the next step, it is necessary that all the output raster layers have the same CRS,extent and pixel size.
 
+
+Before to start with the next step, it is necessary that all the output raster layers have the same CRS,extent and pixel size.
 
 
 Susceptibility Map Generation 
@@ -94,8 +95,41 @@ The mandatory output of this step consists in the table with the computed popula
  
 
 STEP 5 - Website and WebGIS development
+As a final step, we have developed a WebGIS application that enables users to visualize the analyzed maps and the landslide susceptibility map. Our intuitive interfaces and interactive functionalities allow seamless navigation, zooming in and out, toggling different layers, and accessing supplementary information. These features enhance users' understanding of the landslide susceptibility assessment and the related spatial data.
+
+In addition, our WebGIS platform offers a selection of base maps to choose from, including:
+
+Stamen Toner:
+This map style presents a sleek and high-contrast design, emphasizing roads, labels, and boundaries with crisp black and white tones. It provides a visually striking representation, making it perfect for highlighting essential geographic features.
+
+Stamen Watercolor:
+The Stamen Watercolor base map brings a unique hand-drawn aesthetic to the map. It beautifully renders landscapes, buildings, and water bodies with watercolor-style brush strokes, adding a touch of creativity and elegance.
+
+Bing Maps Aerial:
+With high-resolution satellite photographs, the Bing Maps Aerial offers a bird's-eye view of landscapes, cities, and landmarks. It allows users to explore and analyze areas from an aerial perspective, providing valuable insights.
+
+Bing Maps Roads:
+The Bing Maps Roads base map focuses on road networks, providing detailed information on streets, highways, and transportation infrastructure. It is particularly useful for route planning, navigation, and understanding the connectivity of road systems.
+
+OpenStreetMap:
+OpenStreetMap is a collaborative and continuously evolving map created by a global community. It offers comprehensive coverage worldwide and includes detailed information about roads, buildings, landmarks, and points of interest. It serves as a rich and up-to-date mapping foundation.
+
+By offering this diverse range of base maps, our WebGIS platform ensures flexibility and variety in visualizing data and exploring geographical information. Whether you prefer a clean and minimalistic design, an artistic touch, or comprehensive mapping coverage, these base maps provide a wide array of options to enhance your mapping endeavors.
 
 
+
+---> Issues 
+The main issues we encountered during the project are as follows:
+
+1. We faced difficulties in generating the susceptibility map. We had to ensure that all the required layers had the same extent and pixel dimensions. In order to do that we had to use the tool r.resamp.
+
+2. The susceptibility map is missing a small portion. We tried generating it using different sets of training points from different PCs, but the problem remained unresolved.
+
+2. Some team members were unable to continue the process of generating the error matrix on their PCs because they lacked the "Accuracy Assessment and Sampling" tool.
+
+3. We had to find an alternative approach (using Fluorish) to plot the pie chart showing the percentage of the population residing in the four different risk classes. The only team member who had access to the "Accuracy Assessment and Sampling" functionality and successfully completed the QGIS requirements encountered problems with the DataPlotly plugin. Despite selecting "pie chart" from the menu, only a solid-colored line was plotted.
+
+4.Difficulty in finding the Bing key from the Microsoft website. For this reason, other base maps have been used.
 
 
 
