@@ -16,19 +16,23 @@ let map = new ol.Map({
 });
 */
 
-let tl = new ol.layer.Tile({
-    visible: false,
+let osm = new ol.layer.Tile({
+    title: 'OpenStreetMap',
+    type: 'base',
+    visible: true,
     source: new ol.source.OSM()
 });
 
 let stamen = new ol.layer.Tile({
-    visible: false,
+    title: 'Staminchia',
+    visible: true,
     source: new ol.source.Stamen({
         layer: 'watercolor',
       }),
 });
 
-let osm = new ol.layer.Tile({
+let toner = new ol.layer.Tile({
+    title: 'Tonericchio(ne)',
     visible: true,
     source: new ol.source.Stamen({
         layer: 'toner',
@@ -40,7 +44,7 @@ const initialZoom = 10;
 const initialCoordinates = [9.2462, 45.9644];
 let map = new ol.Map({
     target: document.getElementById('map'),
-    layers: [osm],
+    //layers: [osm, toner, stamen],
     view: new ol.View({
         center: ol.proj.fromLonLat(initialCoordinates), //We have to convert from EPSG:4326 to EPSG:3857 because openlayers uses it by default!
         zoom: initialZoom
@@ -49,20 +53,22 @@ let map = new ol.Map({
 
 //Step 2: The Colombia Boundary layer definition. This is a WMS layer
 var NLZ = new ol.layer.Image({
+    title: 'NLZ',
     source: new ol.source.ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_06:NLZ'}
     }),
+    opacity: 0.5,
 });
-map.addLayer(NLZ);
 
 var CaseStudy1 = new ol.layer.Image({
+    title: 'Case Study',
     source: new ol.source.ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_06:CaseStudy1'}
     }),
+    opacity: 0.5,
 });
-map.addLayer(CaseStudy1);
 
 var Differences1 = new ol.layer.Image({
     source: new ol.source.ImageWMS({
@@ -175,29 +181,48 @@ var ProfileCurvature = new ol.layer.Image({
     }),
 });
 map.addLayer(ProfileCurvature);
+
 let basemapLayers = new ol.layer.Group({
     title: "Base Maps",
-    layers: [osm]
+    layers: [osm, toner, stamen]
 });
-//Add the Stamen base layers
-var stamenWatercolor = new ol.layer.Tile({
-    title: 'Stamen Watercolor',
-    type: 'base',
-    visible: false,
-    source: new ol.source.Stamen({
-        layer: 'watercolor'
+
+let overlayLayers = new ol.layer.Group({
+    title: 'Overlay Layers',
+    layers: [CaseStudy1, Differences1, LSclipped, NLZ, PlanCurvature1, ProfileCurvature, Slope1, aspect5, dtm_clipped11, dusaf1, faults2, resampled_susceptibility, rivers1, roads1, susceptibility1, susceptibility_reclassified1]
     })
-});
-var stamenToner = new ol.layer.Tile({
-    title: 'Stamen Toner',
-    type: 'base',
-    visible: true,
-    source: new ol.source.Stamen({
-        layer: 'toner'
+let TotalMap = new ol.layer.Group({
+    title: 'Our Map',
+    layers: [basemapLayers,overlayLayers]
     })
-});
+map.addLayer(TotalMap);
+
+
+
+// Controls
+
+map.addControl(new ol.control.ScaleLine());
+map.addControl(new ol.control.FullScreen());
+map.addControl(new ol.control.OverviewMap());
+map.addControl(
+    new ol.control.MousePosition ({
+    coordinateFormat: ol.coordinate.createStringXY(4),
+    projection: 'EPSG:4326',
+    className: 'custom-control',
+    placeholder: '0.0000, 0.0000'
+    })
+);
+
+//Add the layer switcher control
+var layerSwitcher = new ol.control.LayerSwitcher({});
+map.addControl(layerSwitcher);
+
+
+
+
+
 //Get the list of basemaps and Extend the list using the .extend() function adding the 2 new layers
-basemapLayers.getLayers().extend([stamenWatercolor, stamenToner]);
+//basemapLayers.getLayers().extend([stamenWatercolor, stamenToner]);
 //Add the Bing Maps layers
 /*
 var BING_MAPS_KEY = "AgtG84GxqgWsJZDR1jn1ROSuXfgcQTtJQxqL1FoWEac7JtF9uKRWw72QbZY9Criv";
