@@ -1,21 +1,4 @@
 
-
-/*
-let osm = new ol.layer.Tile({ visible: true,
-    source: new ol.source.OSM()
-});
-const initialZoom = 2;
-const initialCoordinates = [0, 0];
-let map = new ol.Map({
-    target: document.getElementById('map'),
-    layers: [osm],
-    view: new ol.View({
-        center: initialCoordinates,
-        zoom: initialZoom
-    })
-});
-*/
-
 let osm = new ol.layer.Tile({
     title: 'OpenStreetMap',
     type: 'base',
@@ -40,8 +23,8 @@ let toner = new ol.layer.Tile({
 });
 
 //Put here the main map object.
-const initialZoom = 10;
-const initialCoordinates = [9.2462, 45.9644];
+const initialZoom = 11.5;
+const initialCoordinates = [9.3832, 46.0112];
 let map = new ol.Map({
     target: document.getElementById('map'),
     //layers: [osm, toner, stamen],
@@ -51,7 +34,6 @@ let map = new ol.Map({
     })
 });
 
-//Step 2: The Colombia Boundary layer definition. This is a WMS layer
 var NLZ = new ol.layer.Image({
     title: 'NLZ',
     source: new ol.source.ImageWMS({

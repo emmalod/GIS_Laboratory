@@ -120,8 +120,9 @@
 }
 
 .layer-switcher li input {
-  background-color: orange;
+  background-color: white;
   border-color: blue;
+  border: 5px;
   position: absolute;
   left: 1.2em;
   height: 1em;
