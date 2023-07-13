@@ -24,7 +24,7 @@ let osm = new ol.layer.Tile({
 });
 
 let stamen = new ol.layer.Tile({
-    title: 'Staminchia',
+    title: 'Stamen',
     visible: true,
     source: new ol.source.Stamen({
         layer: 'watercolor',
@@ -32,7 +32,7 @@ let stamen = new ol.layer.Tile({
 });
 
 let toner = new ol.layer.Tile({
-    title: 'Tonericchio(ne)',
+    title: 'Toner',
     visible: true,
     source: new ol.source.Stamen({
         layer: 'toner',
@@ -59,6 +59,7 @@ var NLZ = new ol.layer.Image({
         params: { 'LAYERS': 'gisgeoserver_06:NLZ'}
     }),
     opacity: 0.5,
+    visible:false,
 });
 
 var CaseStudy1 = new ol.layer.Image({
@@ -68,119 +69,145 @@ var CaseStudy1 = new ol.layer.Image({
         params: { 'LAYERS': 'gisgeoserver_06:CaseStudy1'}
     }),
     opacity: 0.5,
+    visible:true 
 });
 
 var Differences1 = new ol.layer.Image({
+    title:'Differences',
     source: new ol.source.ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_06:Differences1'}
     }),
-});
-map.addLayer(Differences1);
+    visible:false
+}); 
+
 
 var LSclipped = new ol.layer.Image({
+    title:'Landslides',
     source: new ol.source.ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_06:LSclipped'}
     }),
+    visible:false
 });
-map.addLayer(LSclipped);
+
 
 var PlanCurvature1 = new ol.layer.Image({
+    title:'Plan Curvature',
     source: new ol.source.ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_06:PlanCurvature1'}
     }),
+    visible:false
 });
-map.addLayer(PlanCurvature1);
+
 
 var Slope1 = new ol.layer.Image({
+    title:'Slope',
     source: new ol.source.ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_06:Slope1'}
     }),
+    visible:false,
 });
-map.addLayer(Slope1);
+
 
 var aspect5 = new ol.layer.Image({
+    title:'Aspect',
     source: new ol.source.ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_06:aspect5'}
     }),
+    visible:false,
 });
-map.addLayer(aspect5);
+
 
 var dtm_clipped11 = new ol.layer.Image({
+    title:'Dtm',
     source: new ol.source.ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_06:dtm_clipped11'}
     }),
+    visible:false,
 });
-map.addLayer(dtm_clipped11);
 
 var dusaf1 = new ol.layer.Image({
+    title:'Dusaf',
     source: new ol.source.ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_06:dusaf1'}
     }),
+    visible:false,
 });
-map.addLayer(dusaf1);
+
 
 var faults2 = new ol.layer.Image({
+    title:'Faults',
     source: new ol.source.ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_06:faults2'}
     }),
+    visible:false,
 });
-map.addLayer(faults2);
+
 
 var resampled_susceptibility = new ol.layer.Image({
+    title:'Susceptibility Resampled',
     source: new ol.source.ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_06:resampled_susceptibility'}
     }),
+    visible:false,
 });
-map.addLayer(resampled_susceptibility);
+
 
 var rivers1 = new ol.layer.Image({
+    title:'Rivers',
     source: new ol.source.ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_06:rivers1'}
     }),
+    visible:false,
 });
-map.addLayer(rivers1);
+
 
 var roads1 = new ol.layer.Image({
+    title:'Roads',
     source: new ol.source.ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_06:roads1'}
     }),
+    visible:false,
 });
-map.addLayer(roads1);
+
 
 var susceptibility1 = new ol.layer.Image({
+    title:'Susceptibility',
     source: new ol.source.ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_06:susceptibility1'}
     }),
+    visible:false,
 });
-map.addLayer(susceptibility1);
 
 var susceptibility_reclassified1 = new ol.layer.Image({
+    title:'Susceptibility Reclassified',
     source: new ol.source.ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_06:susceptibility_reclassified1'}
     }),
+    visible:false,
 });
-map.addLayer(susceptibility_reclassified1);
+
 
 var ProfileCurvature = new ol.layer.Image({
+    title:'Profile Curvature',
     source: new ol.source.ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
         params: { 'LAYERS': 'gisgeoserver_06:ProfileCurvature'}
     }),
+    visible:false,
 });
-map.addLayer(ProfileCurvature);
 
 let basemapLayers = new ol.layer.Group({
     title: "Base Maps",
