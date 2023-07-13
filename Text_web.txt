@@ -129,4 +129,5 @@ The main issues we encountered during the project are as follows:
 
 3. We had to find an alternative approach (using Fluorish) to plot the pie chart showing the percentage of the population residing in the four different risk classes. The only team member who had access to the "Accuracy Assessment and Sampling" functionality and successfully completed the QGIS requirements encountered problems with the DataPlotly plugin. Despite selecting "pie chart" from the menu, only a solid-colored line was plotted.
 
+4.Difficulty in finding the Bing key from the Microsoft website. For this reason, other base maps have been used.
 
