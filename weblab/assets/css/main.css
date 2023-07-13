@@ -69,7 +69,7 @@ input, select, textarea {
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	-ms-appearance: none;
-	appearance: none;
+	appearance: auto;
 }
 
 /* Basic */
@@ -1989,11 +1989,74 @@ input, select, textarea {
 				background: #FFFFFF;
 				width: 2.5em;
 				height: 2.5em;
-				border-radius: 0.35em;
+				border-radius: 100%;
 				text-align: center;
 				line-height: 2.5em;
 				margin-right: 0.75em;
 			}
+
+/* Bioicons */
+	
+	ul.bioicons {
+	    position: relative;
+	    background: white;
+	    border-radius: 4em;
+	    display: inline-block;
+	    padding: 0.35em 0.75em 0.35em 0.75em;
+	    font-size: 1.25em;
+	    cursor: default;
+	    list-style: none;
+	    padding-right: 0.6em;
+    	padding-left: 0;
+	}
+
+	ul.bioicons li a {
+	    display: inline-block;
+	    background: #fabf9c;
+	    width: 2.5em;
+	    height: 2.5em;
+	    line-height: 2.5em;
+	    text-align: center;
+	    border-radius: 100%;
+	    border: 0;
+	    color: white;
+	}
+
+	ul.bioicons li:before {
+	    display: inline-block;
+	    color: #fabf9c;
+	    background: #FFFFFF;
+	    width: 2.5em;
+	    height: 2.5em;
+	    border-radius: 0.35em;
+	    text-align: center;
+	    line-height: 2.5em;
+	    margin-right: 0.75em;
+	}
+
+	.bioicon.solid:before {
+    	font-weight: 900;
+	}
+	.bioicon:before {
+	    line-height: inherit;
+	}
+	.bioicon:before {
+	    -moz-osx-font-smoothing: grayscale;
+	    -webkit-font-smoothing: antialiased;
+	    display: inline-block;
+	    font-style: normal;
+	    font-variant: normal;
+	    text-rendering: auto;
+	    line-height: 1;
+	    text-transform: none !important;
+	    font-family: 'Font Awesome 5 Free';
+	    font-weight: 400;
+	}
+
+	.bioicon:hover {
+		color: #f35858;
+		border-bottom-color: rgba(255, 255, 255, 0);
+	}
 
 /* Menu */
 
@@ -2177,6 +2240,7 @@ input, select, textarea {
 		.icon.brands:before {
 			font-family: 'Font Awesome 5 Brands';
 		}
+
 
 /* Wrappers */
 
