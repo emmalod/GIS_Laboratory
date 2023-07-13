@@ -7,6 +7,10 @@
 		<title>GIS Project - Group 6</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="v6.14.1-dist/ol.css">
+		<script src="v6.14.1-dist/ol.js"></script>
+		<script src="v6.14.1-dist/tile.stamen.js"> </script>
+		<link rel="stylesheet" href="assets/css/style.css"/>
 		<link rel="stylesheet" href="assets/css/main.css" />
 	</head>
 	<body class="homepage is-preload">
@@ -30,79 +34,65 @@
 							</nav>
 					</div>
 				</div>
-
+				
 			<!-- Main -->
 				<div class="wrapper">
 					<div class="container" id="main">
 
 						<!-- Content -->
 							<article id="content">
-								<header>
-									<h2>No Sidebar</h2>
-									<p>Lorem ipsum dolor sit amet consectetur et sed adipiscing elit
-									dolor neque semper.</p>
+								<header style="text-align: center;">
+									<h2><b>WebMap</b></h2>
 								</header>
-								<a href="#" class="image featured"><img src="images/pic06.jpg" alt="" /></a>
-								<p>Ut sed tortor luctus, gravida nibh eget, volutpat odio. Proin rhoncus, sapien
-								mollis luctus hendrerit, orci dui viverra metus, et cursus nulla mi sed elit. Vestibulum
-								condimentum, mauris a mattis vestibulum, urna mauris cursus lorem, eu fringilla lacus
-								ante non est. Nullam vitae feugiat libero, eu consequat sem. Proin tincidunt neque
-								eros. Duis faucibus blandit ligula, mollis commodo risus sodales at. Sed rutrum et
-								turpis vel blandit. Nullam ornare congue massa, at commodo nunc venenatis varius.
-								Praesent mollis nisi at vestibulum aliquet. Sed sagittis congue urna ac consectetur.</p>
-								<p>Mauris eleifend eleifend felis aliquet ornare. Vestibulum porta velit at elementum
-								gravida nibh eget, volutpat odio. Proin rhoncus, sapien
-								mollis luctus hendrerit, orci dui viverra metus, et cursus nulla mi sed elit. Vestibulum
-								condimentum, mauris a mattis vestibulum, urna mauris cursus lorem, eu fringilla lacus
-								ante non est. Nullam vitae feugiat libero, eu consequat sem. Proin tincidunt neque
-								eros. Duis faucibus blandit ligula, mollis commodo risus sodales at. Sed rutrum et
-								turpis vel blandit. Nullam ornare congue massa, at commodo nunc venenatis varius.
-								Praesent mollis nisi at vestibulum aliquet. Sed sagittis congue urna ac consectetur.</p>
-								<p>Vestibulum pellentesque posuere lorem non aliquam. Mauris eleifend eleifend
-								felis aliquet ornare. Vestibulum porta velit at elementum elementum.</p>
 							</article>
 
-						<div class="row features">
-							<section class="col-4 col-12-narrower feature">
-								<div class="image-wrapper first">
-									<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
-								</div>
-								<header>
-									<h3>Dolor sit consequat magna</h3>
-								</header>
-								<p>Lorem ipsum dolor sit amet consectetur et sed adipiscing elit. Curabitur
-								vel sem sit dolor neque semper magna lorem ipsum.</p>
-								<ul class="actions">
-									<li><a href="#" class="button">Elevate my awareness</a></li>
-								</ul>
-							</section>
-							<section class="col-4 col-12-narrower feature">
-								<div class="image-wrapper">
-									<a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
-								</div>
-								<header>
-									<h3>Dolor sit consequat magna</h3>
-								</header>
-								<p>Lorem ipsum dolor sit amet consectetur et sed adipiscing elit. Curabitur
-								vel sem sit dolor neque semper magna lorem ipsum.</p>
-								<ul class="actions">
-									<li><a href="#" class="button">Elevate my awareness</a></li>
-								</ul>
-							</section>
-							<section class="col-4 col-12-narrower feature">
-								<div class="image-wrapper">
-									<a href="#" class="image featured"><img src="images/pic05.jpg" alt="" /></a>
-								</div>
-								<header>
-									<h3>Dolor sit consequat magna</h3>
-								</header>
-								<p>Lorem ipsum dolor sit amet consectetur et sed adipiscing elit. Curabitur
-								vel sem sit dolor neque semper magna lorem ipsum.</p>
-								<ul class="actions">
-									<li><a href="#" class="button">Elevate my awareness</a></li>
-								</ul>
-							</section>
-						</div>
+							<div id="map"></div>
+
+							<!--
+							<div>
+								<iframe width="500" height="400" frameborder="0" src="https://www.bing.com/maps/embed?h=400&w=500&cp=45.9644~9.2462&lvl=15&typ=d&sty=r&src=SHELL&FORM=MBEDV8" scrolling="no">
+								</iframe>
+								<div style="white-space: nowrap; text-align: center; width: 500px; padding: 6px 0;">
+								   <a id="largeMapLink" target="_blank" href="https://www.bing.com/maps?cp=45.9644~9.2462&amp;sty=r&amp;lvl=15&amp;FORM=MBEDLD">Visualizza mappa più grande</a> &nbsp; | &nbsp;
+								   <a id="dirMapLink" target="_blank" href="https://www.bing.com/maps/directions?cp=45.9644~9.2462&amp;sty=r&amp;lvl=15&amp;rtp=~pos.45.9644_9.2462____&amp;FORM=MBEDLD">Ottieni indicazioni stradali</a>
+							   </div>
+						   </div>
+
+							
+							<script>
+								function initialize() {
+								  var map = new google.maps.Map(document.getElementById("map"), {
+									center: {lat: 40, lng: -74},
+									zoom: 8
+								  });
+							
+								  // Add a button to change the basemap to satellite.
+								  var satelliteButton = document.getElementById("satelliteButton");
+								  satelliteButton.addEventListener("click", function() {
+									map.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+								  });
+							
+								  // Add a button to change the basemap to terrain.
+								  var terrainButton = document.getElementById("terrainButton");
+								  terrainButton.addEventListener("click", function() {
+									map.setMapTypeId(google.maps.MapTypeId.TERRAIN);
+								  });
+							
+								  // Add a button to change the basemap to hybrid.
+								  var hybridButton = document.getElementById("hybridButton");
+								  hybridButton.addEventListener("click", function() {
+									map.setMapTypeId(google.maps.MapTypeId.HYBRID);
+								  });
+								}
+							
+								google.maps.event.addDomListener(window, "load", initialize);
+							</script>
+
+							<button id="satelliteButton">Satellite</button>
+							<button id="terrainButton">Terrain</button>
+							<button id="hybridButton">Hybrid</button>
+							-->
+
 					</div>
 				</div>
 
@@ -145,7 +135,7 @@
 						</div>
 					</div>
 				</div>
-
+				
 		</div>
 
 		<!-- Scripts -->
@@ -155,6 +145,8 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/elm-pep@1.0.6/dist/elm-pep.js"></script>
+			<script src="assets/js/map.js"></script>
 
 	</body>
 </html>

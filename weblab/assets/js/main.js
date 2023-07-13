@@ -1,3 +1,9 @@
+import Map from 'ol/Map.js';
+import Stamen from 'ol/source/Stamen.js';
+import TileLayer from 'ol/layer/Tile.js';
+import View from 'ol/View.js';
+import {fromLonLat} from 'ol/proj.js';
+
 /*
 	Telephasic by HTML5 UP
 	html5up.net | @ajlkn
