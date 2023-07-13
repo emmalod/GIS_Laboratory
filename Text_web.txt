@@ -131,3 +131,17 @@ The main issues we encountered during the project are as follows:
 
 4.Difficulty in finding the Bing key from the Microsoft website. For this reason, other base maps have been used.
 
+
+
+-->Result
+The error matrix that we have obtained from the validation procedure is the following: 
+     --mettere la matrix---
+The overall accuracy OA, that represents the proportion of correctly classified pixels out of the total number of pixels assumes the value of 0.77, and it signifies a sufficiently high level of reliability in the results of the susceptibility map.
+
+From the phase of Population Exposure Assessment it is revealed that the majority of the population lives in the low risk of landslide zone, but despite of this a consistent part of the population of the area lives in the high and very high risk of landslide zone. 
+   --- mettere il grafico--- 
+
+
+
+
+
