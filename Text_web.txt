@@ -95,6 +95,25 @@ The mandatory output of this step consists in the table with the computed popula
  
 
 STEP 5 - Website and WebGIS development
+As a final step, we have developed a WebGIS application that enables users to visualize the analyzed maps and the landslide susceptibility map. Our intuitive interfaces and interactive functionalities allow seamless navigation, zooming in and out, toggling different layers, and accessing supplementary information. These features enhance users' understanding of the landslide susceptibility assessment and the related spatial data.
 
+In addition, our WebGIS platform offers a selection of base maps to choose from, including:
+
+Stamen Toner:
+This map style presents a sleek and high-contrast design, emphasizing roads, labels, and boundaries with crisp black and white tones. It provides a visually striking representation, making it perfect for highlighting essential geographic features.
+
+Stamen Watercolor:
+The Stamen Watercolor base map brings a unique hand-drawn aesthetic to the map. It beautifully renders landscapes, buildings, and water bodies with watercolor-style brush strokes, adding a touch of creativity and elegance.
+
+Bing Maps Aerial:
+With high-resolution satellite photographs, the Bing Maps Aerial offers a bird's-eye view of landscapes, cities, and landmarks. It allows users to explore and analyze areas from an aerial perspective, providing valuable insights.
+
+Bing Maps Roads:
+The Bing Maps Roads base map focuses on road networks, providing detailed information on streets, highways, and transportation infrastructure. It is particularly useful for route planning, navigation, and understanding the connectivity of road systems.
+
+OpenStreetMap:
+OpenStreetMap is a collaborative and continuously evolving map created by a global community. It offers comprehensive coverage worldwide and includes detailed information about roads, buildings, landmarks, and points of interest. It serves as a rich and up-to-date mapping foundation.
+
+By offering this diverse range of base maps, our WebGIS platform ensures flexibility and variety in visualizing data and exploring geographical information. Whether you prefer a clean and minimalistic design, an artistic touch, or comprehensive mapping coverage, these base maps provide a wide array of options to enhance your mapping endeavors.
 
 
