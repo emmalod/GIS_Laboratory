@@ -8,7 +8,7 @@ let osm = new ol.layer.Tile({
 
 let stamen = new ol.layer.Tile({
     title: 'Stamen',
-    visible: true,
+    visible: false,
     source: new ol.source.Stamen({
         layer: 'watercolor',
       }),
@@ -16,7 +16,7 @@ let stamen = new ol.layer.Tile({
 
 let toner = new ol.layer.Tile({
     title: 'Toner',
-    visible: true,
+    visible: false,
     source: new ol.source.Stamen({
         layer: 'toner',
       }),
