@@ -19,4 +19,4 @@ The folder "Website" contains the files and images needed to operate the website
 - WebGIS (web-gis.html)
 - About Us (about-us.html)
 
-The folder "Group_6" contains all the mandatory outputs.
+The folder "Group_6" contains all the mandatory outputs of our project.
