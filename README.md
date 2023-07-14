@@ -9,10 +9,10 @@ The authors are:
 
 ## Project Description
 
-This is the official repository of the Geographic Information System project, a course held in Politecnico di Milano during the Academic year 2022/23
-In this repository you can find the design and the implementation of a website in which we present our GIS project about a landslide risk analysis in the Lombardy region.
+This is the official repository of the Geographic Information System project, a course held in Politecnico di Milano during the Academic year 2022/23.
 
-The folder "Website" contains the files and images needed to operate the website, composed of three web pages:
+In this repository you can find the design and the implementation of a website in which we present our GIS project about a landslide risk analysis in the Lombardy region. It contains the files and images needed to operate the website, composed of three web pages:
+
 - Home (index.html)
 - Our project (our-project.html)
 - Results (results.html)
