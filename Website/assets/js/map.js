@@ -43,6 +43,15 @@ var NLZ = new ol.layer.Image({
     opacity: 0.5,
     visible:false,
 });
+var ndvi = new ol.layer.Image({
+    title: 'Ndvi',
+    source: new ol.source.ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
+        params: { 'LAYERS': 'gisgeoserver_06:ndvi'}
+    }),
+    opacity: 0.5,
+    visible:false,
+});
 
 var CaseStudy1 = new ol.layer.Image({
     title: 'Case Study',
@@ -198,7 +207,7 @@ let basemapLayers = new ol.layer.Group({
 
 let overlayLayers = new ol.layer.Group({
     title: 'Overlay Layers',
-    layers: [CaseStudy1, Differences1, LSclipped, NLZ, PlanCurvature1, ProfileCurvature, Slope1, aspect5, dtm_clipped11, dusaf1, faults2, resampled_susceptibility, rivers1, roads1, susceptibility1, susceptibility_reclassified1]
+    layers: [CaseStudy1,ndvi,Differences1, LSclipped, NLZ, PlanCurvature1, ProfileCurvature, Slope1, aspect5, dtm_clipped11, dusaf1, faults2, resampled_susceptibility, rivers1, roads1, susceptibility1, susceptibility_reclassified1]
     })
 let TotalMap = new ol.layer.Group({
     title: 'Our Map',
